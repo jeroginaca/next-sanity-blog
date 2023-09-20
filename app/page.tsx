@@ -2,6 +2,8 @@ import { Post } from "./lib/interface";
 import { client } from "./lib/sanity";
 import Link from "next/link";
 
+export const revalidate = 900
+
 async function getData(){
   const query = `* [_type == "post"]`;
   
@@ -12,6 +14,7 @@ async function getData(){
 
 export default async function Home() {
   const data = await getData() as Post[];
+  console.log(data)
   return (
     <div className="divide-y divide-gray-200 dark:divide-gray-700">
       <div className="space-y-2 pt-6 pb-8 md:space-y-5">
